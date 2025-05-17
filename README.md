@@ -1,7 +1,5 @@
 # 8-BIT ARCADE
 
-![8-BIT ARCADE Logo](public/file.svg)
-
 A retro-styled arcade gaming platform built with Next.js and React. Experience the nostalgia of classic arcade games with modern web technology.
 
 > 🎮 A collection of 10 retro-styled arcade games built with Next.js, React, and TypeScript. Features 8-bit UI design, game carousel, background music player, and fully responsive gameplay.
