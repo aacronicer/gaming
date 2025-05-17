@@ -6,7 +6,8 @@ A retro-styled arcade gaming platform built with Next.js and React. Experience t
 
 > 🎮 A collection of 10 retro-styled arcade games built with Next.js, React, and TypeScript. Features 8-bit UI design, game carousel, background music player, and fully responsive gameplay.
 
-🔗 **GitHub Repository**: [https://github.com/aacronicer/gaming.git](https://github.com/aacronicer/gaming.git)
+🔗 **GitHub Repository**: [https://github.com/aacronicer/gaming.git](https://github.com/aacronicer/gaming.git)  
+🌐 **Live Website**: [https://gaming-ruddy.vercel.app](https://gaming-ruddy.vercel.app)
 
 ## 🎮 Available Games
 
