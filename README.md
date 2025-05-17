@@ -43,7 +43,7 @@ This arcade features 10 classic-style games:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/gaming-website.git
+   git clone https://github.com/aacronicer/gaming.git
    cd gaming-website
    ```
 
