@@ -6,14 +6,9 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,33 +22,355 @@
   }
 }
 
-.main {
+.arcadeCabinet {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #222;
+  border-left: 30px solid #111;
+  border-right: 30px solid #111;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
+.arcadeHeader {
+  padding: 20px;
+  background-color: #111;
+  border-bottom: 8px solid #000;
+}
+
+.logoContainer {
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent),
+    0 0 30px var(--accent);
+  font-family: var(--font-arcade);
+  letter-spacing: -1px;
+}
+
+.marquee {
+  background-color: #000;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  border: 4px solid var(--mario-red);
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.marqueeContent {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 20s linear infinite;
+  color: var(--foreground);
+  letter-spacing: 1px;
+  font-family: var(--font-arcade);
+  font-size: 0.9rem;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.main {
+  flex: 1;
+  background-color: var(--background);
+  padding: 2rem;
+  border: 8px solid #000;
+  margin: 15px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--foreground);
+  font-size: 1.2rem;
+  font-family: var(--font-arcade);
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* Slider styles */
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+  gap: 10px;
+}
+
+.slider {
+  display: flex;
+  align-items: stretch;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  flex: 1;
+  position: relative;
+  height: 400px; /* Increased height for square cards */
+  max-width: calc(100% - 100px);
+  margin: 0 auto;
+}
+
+.sliderButton {
+  background-color: var(--accent);
+  color: black;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-arcade);
+}
+
+.sliderButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px var(--accent);
+}
+
+.sliderButton:active {
+  transform: scale(0.95);
+}
+
+.prevButton {
+  margin-right: 5px;
+}
+
+.nextButton {
+  margin-left: 5px;
+}
+
+/* Card styles updated for square cards */
+.card {
+  background-color: #000;
+  color: white;
+  border-radius: 0;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 0 var(--accent), 0 0 10px rgba(0, 0, 0, 0.5);
+  border: 4px solid var(--accent);
+  padding: 0;
+  height: 100%;
+  width: 350px; /* Fixed width for square cards */
+  min-width: 350px;
+  display: flex;
+  scroll-snap-align: center;
+  opacity: 0.7;
+  transform: scale(0.9);
+  margin: 0 10px;
+}
+
+.activeCard {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 8px 0 var(--accent), 0 0 15px var(--accent);
+  z-index: 5;
+}
+
+.card:hover {
+  box-shadow: 0 8px 0 var(--accent), 0 0 15px var(--accent);
+}
+
+.card:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 2px 0 var(--accent), 0 0 8px var(--accent);
+}
+
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Game image container and image */
+.gameImageContainer {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Fixed height for image section */
+  overflow: hidden;
+  border-bottom: 3px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.iconDisplay {
+  font-size: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: var(--question-block);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.activeCard .iconDisplay {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Game title section */
+.gameTitle {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid var(--accent);
+  min-height: 50px;
+}
+
+.gameIconSmall {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.iconWrapper {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--question-block);
+  border: 2px solid #000;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+  image-rendering: pixelated;
+}
+
+.gameTitle h2 {
   margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
+  font-size: 1rem;
+  color: var(--accent);
+  text-shadow: 2px 2px 0 #000;
+  font-family: var(--font-arcade);
 }
 
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
+/* Game info section */
+.gameInfo {
+  padding: 15px;
+  flex: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.9)
+  );
+  display: flex;
+  align-items: center;
 }
 
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
+.card p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--foreground);
+  font-family: var(--font-arcade);
+  line-height: 1.4;
+}
+
+/* Random game button */
+.randomGameContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.randomGameButton {
+  background-color: var(--secondary-accent);
+  color: black;
+  font-family: var(--font-arcade);
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  box-shadow: 0 5px 0 #000, 0 0 10px rgba(0, 0, 0, 0.7);
+  border: 3px solid black;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.randomGameButton:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.randomGameButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 #000, 0 0 15px var(--secondary-accent);
+}
+
+.randomGameButton:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #000, 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.randomIcon {
+  margin-right: 8px;
+  font-size: 1.2rem;
 }
 
 .ctas {
@@ -68,10 +385,7 @@
   padding: 0 20px;
   border: none;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -93,19 +407,65 @@ a.secondary {
 }
 
 .footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(to bottom, #333, #222);
+  border-top: 8px solid #000;
 }
 
-.footer a {
+.controls {
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  gap: 8px;
+  margin-bottom: 20px;
 }
 
-.footer img {
-  flex-shrink: 0;
+.joystick {
+  width: 60px;
+  height: 60px;
+  background: #000;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 0 5px #111, 0 0 0 7px #333;
+}
+
+.joystick:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 40px;
+  background: #111;
+  top: -30px;
+  left: 20px;
+  border-radius: 5px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 30px;
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--accent) 60%, #000 65%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.button:nth-child(2) {
+  background: radial-gradient(
+    circle at center,
+    var(--secondary-accent) 60%,
+    #000 65%
+  );
+}
+
+.copyright {
+  color: #bbb;
+  font-size: 0.7rem;
+  font-family: var(--font-arcade);
+  margin: 0;
 }
 
 /* Enable hover only on non-touch devices */
@@ -126,43 +486,48 @@ a.secondary {
   }
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
+/* Responsive design */
+@media (max-width: 768px) {
+  .arcadeCabinet {
+    border-left: 15px solid #111;
+    border-right: 15px solid #111;
+  }
+
+  .title {
+    font-size: 2rem;
   }
 
   .main {
-    align-items: center;
+    padding: 1rem;
+    margin: 10px;
   }
 
-  .main ol {
-    text-align: center;
+  .description {
+    font-size: 1rem;
   }
 
-  .ctas {
-    flex-direction: column;
+  .slider {
+    height: 350px;
+    max-width: calc(100% - 70px);
   }
 
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
+  .card {
+    width: 280px;
+    min-width: 280px;
   }
 
-  a.secondary {
-    min-width: auto;
+  .gameImageContainer {
+    height: 150px;
   }
 
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  .sliderButton {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
   }
-}
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+  .randomGameButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
   }
 }

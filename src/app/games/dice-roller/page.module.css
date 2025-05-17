@@ -1,0 +1,341 @@
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.diceButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.diceButton {
+  padding: 0.5rem 1rem;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.diceButton:hover {
+  background-color: #e0e0e0;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.rollButton,
+.clearButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.rollButton {
+  background-color: #4caf50;
+  color: white;
+  flex: 2;
+}
+
+.rollButton:hover:not(:disabled) {
+  background-color: #388e3c;
+}
+
+.clearButton {
+  background-color: #f44336;
+  color: white;
+  flex: 1;
+}
+
+.clearButton:hover:not(:disabled) {
+  background-color: #d32f2f;
+}
+
+.disabled,
+.rollButton:disabled,
+.clearButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.diceArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  min-height: 200px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.rolling {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.dieContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dieFace {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.dieFace:hover {
+  transform: translateY(-5px) rotate(5deg);
+}
+
+/* D6 specific styling */
+.d6 {
+  display: grid;
+  grid-template-areas:
+    "a . c"
+    "e g f"
+    "d . b";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 8px;
+}
+
+.dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #333;
+}
+
+.d6 .dot:nth-child(1) {
+  grid-area: a;
+}
+.d6 .dot:nth-child(2) {
+  grid-area: b;
+}
+.d6 .dot:nth-child(3) {
+  grid-area: c;
+}
+.d6 .dot:nth-child(4) {
+  grid-area: d;
+}
+.d6 .dot:nth-child(5) {
+  grid-area: e;
+}
+.d6 .dot:nth-child(6) {
+  grid-area: f;
+}
+.d6 .dot:nth-child(7) {
+  grid-area: g;
+}
+
+/* Other dice styling */
+.d4 {
+  background-color: #e8f5e9;
+  border: 2px solid #a5d6a7;
+}
+.d8 {
+  background-color: #e3f2fd;
+  border: 2px solid #90caf9;
+}
+.d10 {
+  background-color: #ede7f6;
+  border: 2px solid #b39ddb;
+}
+.d12 {
+  background-color: #fff3e0;
+  border: 2px solid #ffcc80;
+}
+.d20 {
+  background-color: #fce4ec;
+  border: 2px solid #f48fb1;
+}
+
+.dieValue {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.dieType {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.removeButton {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.dieContainer:hover .removeButton {
+  opacity: 1;
+}
+
+.emptyMessage {
+  color: #999;
+  font-style: italic;
+}
+
+.resultArea {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.totalValue {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 4px;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0) rotate(0);
+  }
+  25% {
+    transform: translate(-5px, -5px) rotate(-5deg);
+  }
+  50% {
+    transform: translate(5px, 5px) rotate(5deg);
+  }
+  75% {
+    transform: translate(-5px, 5px) rotate(-3deg);
+  }
+  100% {
+    transform: translate(5px, -5px) rotate(3deg);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .diceButton {
+    background-color: #333;
+    border-color: #555;
+    color: #eee;
+  }
+
+  .diceButton:hover {
+    background-color: #444;
+  }
+
+  .diceArea {
+    background-color: #222;
+  }
+
+  .dieFace {
+    background-color: #333;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .dot {
+    background-color: #eee;
+  }
+
+  .d4 {
+    background-color: #1b5e20;
+    border-color: #2e7d32;
+  }
+  .d8 {
+    background-color: #0d47a1;
+    border-color: #1565c0;
+  }
+  .d10 {
+    background-color: #4a148c;
+    border-color: #6a1b9a;
+  }
+  .d12 {
+    background-color: #e65100;
+    border-color: #ef6c00;
+  }
+  .d20 {
+    background-color: #880e4f;
+    border-color: #ad1457;
+  }
+
+  .dieValue {
+    color: #eee;
+  }
+
+  .dieType {
+    color: #bbb;
+  }
+
+  .resultArea {
+    background-color: #333;
+    color: #eee;
+  }
+}
+
+@media (max-width: 768px) {
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .rollButton,
+  .clearButton {
+    width: 100%;
+  }
+
+  .dieFace {
+    width: 60px;
+    height: 60px;
+  }
+
+  .dieValue {
+    font-size: 1.4rem;
+  }
+}

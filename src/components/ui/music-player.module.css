@@ -1,0 +1,103 @@
+.musicPlayer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.musicButton {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  cursor: pointer;
+  image-rendering: pixelated;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 3px #000, 0 0 0 6px #39ff14;
+  text-shadow: 2px 2px 0 #000;
+  transition: all 0.2s;
+  transform: scale(1);
+}
+
+.musicButton:hover {
+  transform: scale(1.05);
+}
+
+.musicButton:active {
+  transform: scale(0.95);
+}
+
+.playing {
+  background-color: #39ff14;
+  color: #000;
+  text-shadow: none;
+  animation: pulse 2s infinite;
+}
+
+.error {
+  background-color: #ff2e63;
+  color: #000;
+  text-shadow: none;
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  box-shadow: 0 0 0 3px #000, 0 0 0 6px #ff2e63;
+}
+
+.errorTooltip {
+  position: absolute;
+  bottom: 60px;
+  right: 0;
+  background-color: #000;
+  color: #ff2e63;
+  padding: 10px;
+  border: 3px solid #ff2e63;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  width: 180px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-3px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 3px #000, 0 0 0 6px #39ff14;
+  }
+  50% {
+    box-shadow: 0 0 0 3px #000, 0 0 10px 6px #39ff14;
+  }
+  100% {
+    box-shadow: 0 0 0 3px #000, 0 0 0 6px #39ff14;
+  }
+}

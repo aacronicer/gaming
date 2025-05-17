@@ -1,0 +1,307 @@
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: var(--font-arcade);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Instructions section */
+.instructions {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--secondary-accent);
+  color: var(--foreground);
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Game area */
+.gameArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+/* Target button */
+.target {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.target::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 25%;
+  width: 50%;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.target:active {
+  transform: scale(0.95);
+}
+
+.targetText {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+/* Target states */
+.waiting {
+  background: radial-gradient(circle at 30%, #4a4a4a, #1a1a1a);
+  border: 5px solid #5a5a5a;
+  animation: pulse 1.5s infinite alternate;
+}
+
+.ready {
+  background: radial-gradient(circle at 30%, #ffa726, #e65100);
+  border: 5px solid #ffb74d;
+  animation: readyPulse 1s infinite;
+}
+
+.click {
+  background: radial-gradient(circle at 30%, #66bb6a, #2e7d32);
+  border: 5px solid #81c784;
+  animation: clickPulse 0.5s infinite;
+}
+
+.finished {
+  background: radial-gradient(circle at 30%, #42a5f5, #1565c0);
+  border: 5px solid #64b5f6;
+}
+
+.tooSoon {
+  background: radial-gradient(circle at 30%, #ef5350, #b71c1c);
+  border: 5px solid #e57373;
+  animation: shakePulse 0.5s;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes readyPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(255, 152, 0, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+  }
+}
+
+@keyframes clickPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(76, 175, 80, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  }
+}
+
+@keyframes shakePulse {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(-10px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Stats area */
+.stats {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+}
+
+.statBox {
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  min-width: 120px;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-shadow: 0 0 5px var(--accent);
+}
+
+.attempts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resetButton {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--secondary-accent);
+  border: 1px solid var(--secondary-accent);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-arcade);
+}
+
+.resetButton:hover {
+  background-color: rgba(79, 195, 247, 0.2);
+  box-shadow: 0 0 10px rgba(79, 195, 247, 0.3);
+}
+
+/* Reaction time guide */
+.reactionGuide {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.guideTitle {
+  color: var(--secondary-accent);
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px var(--secondary-accent);
+}
+
+.guideGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.guideItem {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.7rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.guideRange {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: var(--accent);
+}
+
+.guideLabel {
+  font-size: 0.8rem;
+  color: var(--foreground);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .target {
+    width: 180px;
+    height: 180px;
+  }
+
+  .targetText {
+    font-size: 1.6rem;
+  }
+
+  .statRow {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .statBox {
+    width: 100%;
+  }
+
+  .guideGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .target {
+    width: 150px;
+    height: 150px;
+  }
+
+  .targetText {
+    font-size: 1.4rem;
+  }
+
+  .guideGrid {
+    grid-template-columns: 1fr;
+  }
+}

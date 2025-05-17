@@ -1,0 +1,243 @@
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.difficultySelector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.difficultyButtons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.difficultyButton {
+  padding: 0.5rem 1rem;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.difficultyButton:hover:not(.active) {
+  background-color: #e0e0e0;
+}
+
+.difficultyButton.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.gameButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.startButton,
+.resetButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.startButton {
+  background-color: #28a745;
+  color: white;
+}
+
+.startButton:hover {
+  background-color: #218838;
+}
+
+.resetButton {
+  background-color: #6c757d;
+  color: white;
+}
+
+.resetButton:hover {
+  background-color: #5a6268;
+}
+
+.statsBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.grid {
+  display: grid;
+  gap: 5px;
+  margin: 0 auto;
+}
+
+.tile {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+
+.tile:hover {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.tile.correctPosition {
+  background-color: #28a745;
+}
+
+.emptyTile {
+  aspect-ratio: 1 / 1;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.completionMessage {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease;
+}
+
+.completionMessage h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.completionMessage p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .difficultyButton {
+    background-color: #333;
+    border-color: #444;
+    color: #eee;
+  }
+
+  .difficultyButton:hover:not(.active) {
+    background-color: #444;
+  }
+
+  .statsBar {
+    background-color: #333;
+  }
+
+  .statLabel {
+    color: #bbb;
+  }
+
+  .statValue {
+    color: #eee;
+  }
+
+  .tile {
+    background-color: #0069d9;
+  }
+
+  .tile.correctPosition {
+    background-color: #218838;
+  }
+
+  .emptyTile {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .completionMessage {
+    background-color: #1e7e34;
+    color: white;
+  }
+}
+
+@media (max-width: 768px) {
+  .difficultySelector {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .difficultyButtons {
+    justify-content: center;
+  }
+
+  .gameButtons {
+    flex-direction: column;
+  }
+
+  .tile {
+    font-size: 1.2rem;
+  }
+}
