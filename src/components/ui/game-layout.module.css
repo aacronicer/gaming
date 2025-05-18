@@ -1,254 +1,146 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Fixed height to viewport height */
-  max-width: 1200px; /* Increased max-width for better use of screen space */
-  margin: 0 auto;
-  padding: 0;
+  min-height: 100vh;
+  overflow: hidden;
   position: relative;
-  background: #222;
-  border-left: 20px solid #111;
-  border-right: 20px solid #111;
-  background-image: repeating-linear-gradient(
-      to right,
-      transparent 0,
-      transparent 10px,
-      rgba(57, 255, 20, 0.1) 11px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 10px,
-      rgba(57, 255, 20, 0.1) 11px
-    );
-  overflow: hidden; /* Prevent any scrolling */
+  background: var(--background);
+  transition: filter 0.8s, opacity 0.8s;
 }
 
-/* Power-on animation */
 .poweredOff {
   filter: brightness(0.1);
+  opacity: 0.5;
 }
 
 .poweredOn {
   filter: brightness(1);
-  transition: filter 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.poweredOn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(transparent, #39ff14);
-  opacity: 0.05;
-  animation: powerGlow 2s ease-out forwards;
-  pointer-events: none;
-  z-index: 10;
-}
-
-@keyframes powerGlow {
-  0% {
-    opacity: 0.3;
-    height: 100%;
-  }
-  50% {
-    opacity: 0.1;
-  }
-  100% {
-    opacity: 0;
-    height: 0;
-  }
+  opacity: 1;
 }
 
 .cabinetTop {
-  height: 20px;
-  background: linear-gradient(to right, #333, #111, #333);
-  border-bottom: 4px solid #000;
-  box-shadow: 0 4px 0 rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.cabinetTop::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.cabinetTop::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-  width: 15px;
-  height: 5px;
-  background: #c62828;
-  border-radius: 50%;
-  box-shadow: 0 0 5px #ff5252;
-  animation: blink 2s infinite alternate;
-  z-index: 2;
-}
-
-@keyframes blink {
-  0%,
-  80% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0.8;
-  }
+  height: 60px;
+  background-color: #111;
+  border-bottom: 8px solid #000;
 }
 
 .arcadeScreen {
   flex: 1;
-  background-color: var(--background);
-  border: 8px solid #000;
-  margin: 10px;
-  padding: 10px;
-  position: relative;
-  overflow: auto; /* Allow scrolling within the game content if needed */
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 0 15px var(--foreground);
   display: flex;
   flex-direction: column;
-}
-
-.arcadeScreen::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+  border-left: 20px solid #111;
+  border-right: 20px solid #111;
+  margin: 0 auto;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(57, 255, 20, 0.03),
-    transparent
-  );
-  animation: scanEffect 8s linear infinite;
-  pointer-events: none;
-  z-index: 5;
-}
-
-@keyframes scanEffect {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
+  max-width: 1200px;
+  padding: 15px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem; /* Reduced gap */
-  margin-bottom: 1rem; /* Reduced margin */
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 4px solid #000;
+  margin-bottom: 15px;
+  position: relative;
 }
 
 .backButton {
-  display: flex;
-  align-items: center;
-  padding: 0.4rem 0.8rem; /* Smaller padding */
-  background-color: transparent;
-  border: 1px solid var(--accent);
-  border-radius: 0;
-  cursor: pointer;
-  font-size: 0.7rem;
-  color: var(--foreground);
-  transition: all 0.2s ease;
-  margin-bottom: 0.5rem; /* Reduced margin */
-  text-shadow: 2px 2px 0 #000;
   font-family: var(--font-arcade);
+  background-color: #111;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  padding: 5px 10px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 15px;
 }
 
 .backButton:hover {
   background-color: var(--accent);
   color: #000;
-  text-shadow: none;
+  box-shadow: 0 0 10px var(--accent);
 }
 
 .titleContainer {
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 0.5rem; /* Reduced padding */
+  flex: 1;
+  text-align: center;
 }
 
 .titleArea {
-  text-align: center;
-  margin-bottom: 0.5rem; /* Reduced margin */
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px 25px;
+  border: 3px solid var(--accent);
 }
 
 .title {
-  font-size: 1.5rem; /* Slightly smaller font */
-  margin: 0 0 0.3rem;
+  font-size: 1.5rem;
+  margin: 0;
   color: var(--accent);
-  text-shadow: 2px 2px 0 #000;
   text-transform: uppercase;
+  font-family: var(--font-arcade);
+  text-shadow: 0 0 10px var(--accent);
+  letter-spacing: 1px;
 }
 
 .description {
-  font-size: 0.7rem; /* Slightly smaller font */
-  margin: 0;
+  margin: 5px 0 0;
+  font-size: 0.8rem;
   color: var(--foreground);
-  max-width: 600px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 0 #000;
+  font-family: var(--font-arcade);
 }
 
 .gameContent {
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  overflow: hidden; /* Prevent scrolling within game content container */
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 4px solid #000;
+  padding: 15px;
+  position: relative;
+  overflow: auto;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
 }
 
 .content {
   flex: 1;
-  width: 100%;
-  padding: 0.5rem; /* Reduced padding */
-  background: rgba(0, 0, 0, 0.2);
-  border: 2px solid #000;
-  overflow: auto; /* Allow scrolling within specific game content if needed */
-  display: flex; /* Added to help game content expand properly */
-  flex-direction: column; /* Added to help game content expand properly */
+  display: flex;
+  flex-direction: column;
 }
 
 .cabinetControls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 60px; /* Reduced height */
-  padding: 10px 50px;
+  justify-content: space-around;
+  height: 80px;
   background: linear-gradient(to bottom, #333, #222);
-  border-top: 4px solid #000;
+  border-top: 8px solid #000;
+  padding: 10px 20px;
 }
 
 .joystick {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background: #000;
   border-radius: 50%;
   position: relative;
+  box-shadow: 0 0 0 5px #111, 0 0 0 7px #333;
 }
 
 .joystick:after {
   content: "";
   position: absolute;
   width: 15px;
-  height: 30px;
+  height: 35px;
   background: #111;
-  top: -20px;
-  left: 12.5px;
+  top: -25px;
+  left: 17px;
   border-radius: 5px;
 }
 
@@ -258,12 +150,11 @@
 }
 
 .arcadeButton {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: radial-gradient(circle at center, var(--accent) 60%, #000 65%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  border: 2px solid #000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .arcadeButton:nth-child(2) {
@@ -275,45 +166,14 @@
 }
 
 .footer {
-  height: 30px; /* Fixed height */
-  padding: 0.3rem; /* Reduced padding */
+  padding: 10px;
   text-align: center;
-  color: var(--foreground);
-  font-size: 0.6rem;
+  font-size: 0.7rem;
+  color: #999;
   background: #111;
-  border-top: 2px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0;
-    border-left: 10px solid #111;
-    border-right: 10px solid #111;
-  }
-
-  .arcadeScreen {
-    margin: 5px;
-    padding: 5px;
-  }
-
-  .title {
-    font-size: 1.2rem;
-  }
-
-  .description {
-    font-size: 0.7rem;
-  }
-
-  .cabinetControls {
-    height: 50px;
-    padding: 5px 20px;
-  }
-}
-
-/* Joystick wiggle animation */
+/* Animation effects */
 .wiggle {
   animation: wiggle 15s ease-in-out infinite;
 }
@@ -321,7 +181,7 @@
 @keyframes wiggle {
   0%,
   100% {
-    transform: rotate(0deg);
+    transform: rotate(0);
   }
   10% {
     transform: rotate(-2deg);
@@ -330,10 +190,10 @@
     transform: rotate(2deg);
   }
   30% {
-    transform: rotate(0deg);
+    transform: rotate(0);
   }
   70% {
-    transform: rotate(0deg);
+    transform: rotate(0);
   }
   80% {
     transform: rotate(-2deg);
@@ -343,13 +203,12 @@
   }
 }
 
-/* Button pulse animation */
 .pulse {
   animation: buttonPulse 8s infinite alternate;
   animation-delay: var(--delay, 0s);
 }
 
-.buttons .arcadeButton:nth-child(1) {
+.buttons .arcadeButton:first-child {
   --delay: 0s;
 }
 
@@ -370,5 +229,387 @@
   }
   99% {
     transform: scale(1);
+  }
+}
+
+/* Scan line effect */
+.arcadeScreen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+}
+
+/* Power glow effect */
+.powerGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: inset 0 0 100px rgba(255, 46, 99, 0.2);
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.poweredOn .powerGlow {
+  opacity: 1;
+}
+
+/* Scanline animation */
+.scanEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    rgba(57, 255, 20, 0.05),
+    rgba(57, 255, 20, 0.01)
+  );
+  z-index: 3;
+  pointer-events: none;
+  animation: scan 8s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Blink animation */
+.blink {
+  animation: blink 2s steps(2) infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive design - Large tablets and small desktops (lg) */
+@media (max-width: 992px) {
+  .arcadeScreen {
+    max-width: 95%;
+    padding: 12px;
+  }
+
+  .titleArea {
+    padding: 8px 20px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .cabinetControls {
+    height: 70px;
+  }
+
+  .joystick {
+    width: 45px;
+    height: 45px;
+  }
+
+  .arcadeButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .gameContent {
+    padding: 12px;
+  }
+}
+
+/* Responsive design - Tablets and large phones (md) */
+@media (max-width: 768px) {
+  .cabinetTop {
+    height: 40px;
+    border-bottom-width: 6px;
+  }
+
+  .arcadeScreen {
+    border-left: 10px solid #111;
+    border-right: 10px solid #111;
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-width: 3px;
+  }
+
+  .backButton {
+    margin-right: 0;
+    font-size: 0.6rem;
+    margin-bottom: 5px;
+  }
+
+  .titleContainer {
+    width: 100%;
+  }
+
+  .titleArea {
+    width: 100%;
+    padding: 7px 15px;
+    border-width: 2px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .description {
+    font-size: 0.7rem;
+  }
+
+  .gameContent {
+    border-width: 3px;
+    padding: 10px;
+  }
+
+  .cabinetControls {
+    height: 50px;
+    padding: 5px 15px;
+    border-top-width: 6px;
+  }
+
+  .joystick {
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 0 4px #111, 0 0 0 6px #333;
+  }
+
+  .joystick:after {
+    width: 12px;
+    height: 30px;
+    top: -20px;
+    left: 14px;
+  }
+
+  .buttons {
+    gap: 15px;
+  }
+
+  .arcadeButton {
+    width: 30px;
+    height: 30px;
+  }
+
+  .footer {
+    padding: 8px;
+    font-size: 0.65rem;
+  }
+}
+
+/* Responsive design - Small phones (sm) */
+@media (max-width: 576px) {
+  .cabinetTop {
+    height: 30px;
+    border-bottom-width: 4px;
+  }
+
+  .arcadeScreen {
+    border-left: 5px solid #111;
+    border-right: 5px solid #111;
+    padding: 8px;
+  }
+
+  .header {
+    padding: 6px;
+    margin-bottom: 8px;
+    border-width: 2px;
+  }
+
+  .titleArea {
+    padding: 5px 10px;
+    border-width: 2px;
+  }
+
+  .title {
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+  }
+
+  .description {
+    font-size: 0.6rem;
+    margin-top: 3px;
+  }
+
+  .gameContent {
+    border-width: 2px;
+    padding: 8px;
+  }
+
+  .cabinetControls {
+    height: 40px;
+    padding: 3px 10px;
+    border-top-width: 4px;
+  }
+
+  .joystick {
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 0 3px #111, 0 0 0 5px #333;
+  }
+
+  .joystick:after {
+    width: 10px;
+    height: 25px;
+    top: -18px;
+    left: 10px;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+
+  .arcadeButton {
+    width: 25px;
+    height: 25px;
+  }
+
+  .backButton {
+    font-size: 0.55rem;
+    padding: 4px 8px;
+    border-width: 1px;
+  }
+
+  .footer {
+    padding: 5px;
+    font-size: 0.6rem;
+  }
+
+  .scanEffect {
+    height: 30px;
+  }
+}
+
+/* Responsive design - Extra small phones (xs) */
+@media (max-width: 360px) {
+  .cabinetTop {
+    height: 20px;
+    border-bottom-width: 3px;
+  }
+
+  .arcadeScreen {
+    border-left: 3px solid #111;
+    border-right: 3px solid #111;
+    padding: 5px;
+  }
+
+  .header {
+    padding: 5px;
+    margin-bottom: 5px;
+    border-width: 2px;
+  }
+
+  .title {
+    font-size: 0.8rem;
+    letter-spacing: normal;
+  }
+
+  .description {
+    font-size: 0.55rem;
+  }
+
+  .gameContent {
+    padding: 6px;
+  }
+
+  .cabinetControls {
+    height: 35px;
+    padding: 2px 5px;
+    border-top-width: 3px;
+  }
+
+  .joystick {
+    width: 25px;
+    height: 25px;
+    box-shadow: 0 0 0 2px #111, 0 0 0 4px #333;
+  }
+
+  .joystick:after {
+    width: 8px;
+    height: 20px;
+    top: -15px;
+    left: 8px;
+  }
+
+  .buttons {
+    gap: 8px;
+  }
+
+  .arcadeButton {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer {
+    padding: 4px;
+    font-size: 0.55rem;
+  }
+}
+
+/* Landscape orientation adjustments for mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .cabinetTop {
+    height: 20px;
+    border-bottom-width: 3px;
+  }
+
+  .arcadeScreen {
+    padding: 5px;
+  }
+
+  .header {
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+
+  .gameContent {
+    padding: 8px;
+  }
+
+  .cabinetControls {
+    height: 30px;
+    border-top-width: 3px;
+  }
+
+  .joystick,
+  .buttons {
+    transform: scale(0.8);
+  }
+
+  .footer {
+    padding: 3px;
   }
 }

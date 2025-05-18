@@ -4,224 +4,244 @@ import { useState, useEffect } from "react";
 import GameLayout from "@/components/ui/game-layout";
 import styles from "./page.module.css";
 
+// Define card types
 interface Card {
   id: number;
-  emoji: string;
-  isFlipped: boolean;
-  isMatched: boolean;
+  icon: string;
+  flipped: boolean;
+  matched: boolean;
 }
 
-interface Level {
-  gridSize: number;
-  name: string;
-}
+// Array of emoji for cards - removed the duplicate "🎪" icon
+const cardIcons = [
+  "🎮",
+  "👾",
+  "🕹️",
+  "🎯",
+  "🏆",
+  "🎲",
+  "🃏",
+  "🎪",
+  "🎨",
+  "🎭",
+  "🎰",
+  "🧩",
+  "🎼",
+  "🎹",
+  "📱",
+  "💻",
+  "🖥️",
+  "🎧",
+  "📷",
+  "📺",
+  "🎬",
+  "💿",
+  "🔋",
+  "📡",
+  "🎸",
+  "🎮",
+  "🏈",
+  "⚽",
+  "🏀",
+  "🎾",
+  "🎱",
+  "🏓",
+];
 
 export default function MemoryMatch() {
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
-  const [moves, setMoves] = useState(0);
-  const [score, setScore] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-  const [currentLevel, setCurrentLevel] = useState(0);
+  const [matchedPairs, setMatchedPairs] = useState<number>(0);
+  const [moves, setMoves] = useState<number>(0);
+  const [gameOver, setGameOver] = useState<boolean>(false);
+  const [level, setLevel] = useState<number>(1);
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-  const levels: Level[] = [
-    { gridSize: 4, name: "Easy" }, // 4x4 grid (8 pairs)
-    { gridSize: 6, name: "Medium" }, // 6x6 grid (18 pairs, correct calculation: 36/2 = 18 pairs)
-    { gridSize: 8, name: "Hard" }, // 8x8 grid (32 pairs)
-  ];
+  // Grid size based on level
+  const gridSize = level === 1 ? 4 : level === 2 ? 6 : 8;
+  const pairsToMatch = Math.pow(gridSize, 2) / 2;
 
-  const emojis = [
-    "🐶",
-    "🐱",
-    "🐭",
-    "🐹",
-    "🐰",
-    "🦊",
-    "🐻",
-    "🐼",
-    "🐨",
-    "🐯",
-    "🦁",
-    "🐮",
-    "🐷",
-    "🐸",
-    "🐵",
-    "🐔",
-    "🐧",
-    "🐦",
-    "🦆",
-    "🦅",
-    "🦉",
-    "🦇",
-    "🐺",
-    "🐗",
-    "🐴",
-    "🦄",
-    "🐝",
-    "🐛",
-    "🦋",
-    "🐌",
-    "🐞",
-    "🐜",
-    "🦟",
-    "🦗",
-    "🕷️",
-    "🦂",
-    "🦕",
-    "🦖",
-    "🦎",
-    "🐙",
-    "🦑",
-    "🦐",
-    "🦞",
-    "🦀",
-    "🐠",
-    "🐡",
-    "🐬",
-    "🐳",
-    "🐊",
-    "🐆",
-  ];
-
+  // Initialize game
   useEffect(() => {
     initializeGame();
-  }, [currentLevel]);
+  }, [level]);
 
+  // Initialize game cards
   const initializeGame = () => {
-    const gridSize = levels[currentLevel].gridSize;
-    const totalPairs = (gridSize * gridSize) / 2;
-
-    // Select random emojis for this level
-    const selectedEmojis = [...emojis]
-      .sort(() => 0.5 - Math.random())
-      .slice(0, totalPairs);
+    const pairs = pairsToMatch;
+    const selectedIcons = cardIcons.slice(0, pairs);
 
     // Create pairs of cards
-    const cardPairs = [...selectedEmojis, ...selectedEmojis]
-      .map((emoji, index) => ({
-        id: index,
-        emoji,
-        isFlipped: false,
-        isMatched: false,
-      }))
-      .sort(() => 0.5 - Math.random());
+    let newCards: Card[] = [];
+    selectedIcons.forEach((icon, index) => {
+      // Create two cards for each icon (a pair)
+      newCards.push({ id: index * 2, icon, flipped: false, matched: false });
+      newCards.push({ id: index * 2 + 1, icon, flipped: false, matched: false });
+    });
 
-    setCards(cardPairs);
+    // Shuffle cards
+    newCards = shuffleArray(newCards);
+
+    // Reset game state
+    setCards(newCards);
     setFlippedCards([]);
+    setMatchedPairs(0);
     setMoves(0);
     setGameOver(false);
+    setIsProcessing(false);
   };
 
-  const handleCardClick = (id: number) => {
-    // Don't allow more than 2 cards to be flipped at once or clicking matched/already flipped cards
-    if (flippedCards.length >= 2) return;
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array: Card[]): Card[] => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
 
-    const clickedCard = cards.find((card) => card.id === id);
-    if (!clickedCard || clickedCard.isFlipped || clickedCard.isMatched) return;
+  // Handle card click
+  const handleCardClick = (id: number) => {
+    // Ignore clicks if there are already two cards flipped, card is already flipped or matched, or we're processing
+    if (
+      isProcessing ||
+      flippedCards.length === 2 ||
+      cards.find((card) => card.id === id)?.flipped ||
+      cards.find((card) => card.id === id)?.matched
+    ) {
+      return;
+    }
 
     // Flip the card
     const updatedCards = cards.map((card) =>
-      card.id === id ? { ...card, isFlipped: true } : card
+      card.id === id ? { ...card, flipped: true } : card
     );
-
-    const updatedFlippedCards = [...flippedCards, id];
-
     setCards(updatedCards);
-    setFlippedCards(updatedFlippedCards);
 
-    // If two cards are flipped, check for a match
-    if (updatedFlippedCards.length === 2) {
-      setMoves(moves + 1);
+    // Add to flipped cards
+    const newFlippedCards = [...flippedCards, id];
+    setFlippedCards(newFlippedCards);
 
-      const [firstId, secondId] = updatedFlippedCards;
+    // If two cards are flipped, check for match
+    if (newFlippedCards.length === 2) {
+      setIsProcessing(true);
+      setMoves((prevMoves) => prevMoves + 1);
+
+      const [firstId, secondId] = newFlippedCards;
       const firstCard = updatedCards.find((card) => card.id === firstId);
       const secondCard = updatedCards.find((card) => card.id === secondId);
 
-      if (firstCard && secondCard && firstCard.emoji === secondCard.emoji) {
-        // Match found!
+      if (firstCard?.icon === secondCard?.icon) {
+        // Match!
         setTimeout(() => {
-          const matchedCards = updatedCards.map((card) =>
-            card.id === firstId || card.id === secondId
-              ? { ...card, isMatched: true }
-              : card
+          // Use the functional update form to ensure we're working with the latest state
+          setCards((prevCards) =>
+            prevCards.map((card) =>
+              card.id === firstId || card.id === secondId
+                ? { ...card, matched: true }
+                : card
+            )
           );
 
-          setCards(matchedCards);
           setFlippedCards([]);
-          setScore(score + 100);
 
-          // Check if all cards are matched (game over)
-          if (matchedCards.every((card) => card.isMatched)) {
+          // Update matched pairs count
+          const newMatchedPairs = matchedPairs + 1;
+          setMatchedPairs(newMatchedPairs);
+
+          // Check if game is over
+          if (newMatchedPairs === pairsToMatch) {
             setGameOver(true);
           }
+
+          setIsProcessing(false);
         }, 500);
       } else {
-        // No match - Fix: Use the specific IDs from updatedFlippedCards instead of flippedCards
+        // No match, flip cards back
         setTimeout(() => {
-          const resetFlippedCards = updatedCards.map((card) =>
-            card.id === firstId || card.id === secondId
-              ? { ...card, isFlipped: false }
-              : card
+          setCards((prevCards) =>
+            prevCards.map((card) =>
+              card.id === firstId || card.id === secondId
+                ? { ...card, flipped: false }
+                : card
+            )
           );
 
-          setCards(resetFlippedCards);
           setFlippedCards([]);
+          setIsProcessing(false);
         }, 1000);
       }
     }
   };
 
+  // Handle level up
   const handleNextLevel = () => {
-    if (currentLevel < levels.length - 1) {
-      // Keep the accumulated score when advancing to next level
-      const currentScore = score;
-      setCurrentLevel(currentLevel + 1);
-
-      // We'll reset other state in initializeGame, but
-      // need to preserve the score across levels
-      setTimeout(() => {
-        setScore(currentScore);
-      }, 100);
+    if (level < 3) {
+      setLevel(level + 1);
+    } else {
+      // Reset to level 1 if at max level
+      setLevel(1);
     }
   };
 
+  // Restart current level
   const handleRestart = () => {
     initializeGame();
   };
 
+  // Calculate card size based on grid
+  const getCardSize = () => {
+    if (gridSize === 4) return "75px"; // Smaller for Level 1
+    if (gridSize === 6) return "65px"; // Even smaller for Level 2
+    return "55px"; // Smallest for Level 3
+  };
+
   return (
-    <GameLayout title="Memory Match" description="Match pairs of cards to win">
+    <GameLayout title="Memory Match" description="Match the pairs of cards">
       <div className={styles.container}>
         <div className={styles.gameInfo}>
           <div className={styles.levelInfo}>
-            <span>Level: {levels[currentLevel].name}</span>
+            Level: {level} | Cards: {gridSize}x{gridSize}
           </div>
           <div className={styles.scoreInfo}>
-            <span>Score: {score}</span>
+            <span>
+              Pairs: {matchedPairs}/{pairsToMatch}
+            </span>
             <span>Moves: {moves}</span>
           </div>
         </div>
 
         <div
           className={`${styles.gameBoard} ${
-            styles["grid" + levels[currentLevel].gridSize]
+            gridSize === 4
+              ? styles.grid4
+              : gridSize === 6
+              ? styles.grid6
+              : styles.grid8
           }`}
           style={{
-            gridTemplateColumns: `repeat(${levels[currentLevel].gridSize}, 1fr)`,
+            gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+            gap: gridSize > 4 ? "5px" : "8px",
           }}
         >
           {cards.map((card) => (
             <div
               key={card.id}
               className={`${styles.card} ${
-                card.isFlipped || card.isMatched ? styles.flipped : ""
-              } ${card.isMatched ? styles.matched : ""}`}
+                card.flipped ? styles.flipped : ""
+              } ${card.matched ? styles.matched : ""}`}
               onClick={() => handleCardClick(card.id)}
+              style={{
+                width: getCardSize(),
+                height: getCardSize(),
+                fontSize: gridSize > 6 ? "0.8rem" : "1rem",
+              }}
             >
               <div className={styles.cardInner}>
-                <div className={styles.cardFront}></div>
+                <div className={styles.cardFront}>?</div>
                 <div className={styles.cardBack}>
-                  <span>{card.emoji}</span>
+                  <span>{card.icon}</span>
                 </div>
               </div>
             </div>
@@ -232,11 +252,11 @@ export default function MemoryMatch() {
           <div className={styles.gameOver}>
             <div className={styles.gameOverContent}>
               <h2>Level Complete!</h2>
-              <p>Score: {score}</p>
-              <p>Moves: {moves}</p>
-
+              <p>
+                You completed level {level} in {moves} moves!
+              </p>
               <div className={styles.gameOverButtons}>
-                {currentLevel < levels.length - 1 ? (
+                {level < 3 ? (
                   <button
                     className={styles.nextLevelButton}
                     onClick={handleNextLevel}
@@ -244,13 +264,18 @@ export default function MemoryMatch() {
                     Next Level
                   </button>
                 ) : (
-                  <p>You completed all levels!</p>
+                  <button
+                    className={styles.nextLevelButton}
+                    onClick={() => setLevel(1)}
+                  >
+                    Start Over (Level 1)
+                  </button>
                 )}
                 <button
                   className={styles.restartButton}
                   onClick={handleRestart}
                 >
-                  Restart Level
+                  Replay Level
                 </button>
               </div>
             </div>

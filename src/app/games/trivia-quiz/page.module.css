@@ -280,6 +280,7 @@
   }
 }
 
+/* Enhanced responsive design - existing media query */
 @media (max-width: 768px) {
   .quizHeader {
     flex-direction: column;
@@ -293,5 +294,252 @@
 
   .questionText {
     font-size: 1.2rem;
+  }
+
+  .categorySelect {
+    max-width: 100%;
+  }
+
+  .container {
+    max-width: 95%;
+  }
+
+  .option {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .startScreen,
+  .questionCard,
+  .resultScreen {
+    padding: 1.5rem;
+  }
+}
+
+/* Additional breakpoint for small tablets and large phones */
+@media (max-width: 576px) {
+  .startScreen,
+  .questionCard,
+  .resultScreen {
+    padding: 1.2rem;
+    border-radius: 8px;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .questionText {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .options {
+    gap: 0.8rem;
+  }
+
+  .option {
+    padding: 0.7rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
+  }
+
+  .quizHeader {
+    padding: 0.8rem;
+    border-radius: 6px;
+  }
+
+  .startButton,
+  .restartButton {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .finalScore {
+    margin: 0.8rem 0 1.5rem;
+  }
+
+  .scoreValue {
+    font-size: 2.5rem;
+  }
+
+  .statItem {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .summaryStats {
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .select {
+    padding: 0.7rem 0.9rem;
+    font-size: 1rem;
+  }
+}
+
+/* Additional breakpoint for mobile phones */
+@media (max-width: 450px) {
+  .startScreen,
+  .questionCard,
+  .resultScreen {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .quizHeader {
+    padding: 0.7rem;
+  }
+
+  .questionText {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .option {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border-width: 1px;
+  }
+
+  .startButton,
+  .restartButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .progress,
+  .score {
+    font-size: 0.9rem;
+  }
+
+  .timer {
+    height: 8px;
+  }
+
+  .timer span {
+    font-size: 0.8rem;
+    top: -18px;
+  }
+
+  .scoreValue {
+    font-size: 2.2rem;
+  }
+
+  .summary h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .statItem {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .select {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .categorySelect label {
+    font-size: 1rem;
+  }
+}
+
+/* Additional breakpoint for small phones */
+@media (max-width: 360px) {
+  .startScreen,
+  .questionCard,
+  .resultScreen {
+    padding: 0.8rem;
+    gap: 1.2rem;
+  }
+
+  .questionText {
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .option {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .progress,
+  .score {
+    font-size: 0.85rem;
+  }
+
+  .startButton,
+  .restartButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .scoreValue {
+    font-size: 2rem;
+  }
+
+  .statItem {
+    padding: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  .select {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .categorySelect label {
+    font-size: 0.95rem;
+  }
+}
+
+/* Landscape orientation optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .startScreen {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .categorySelect {
+    max-width: 60%;
+  }
+
+  .quizHeader {
+    flex-direction: row;
+    padding: 0.5rem;
+  }
+
+  .timer {
+    width: 50%;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+  }
+
+  .questionText {
+    margin-bottom: 0.8rem;
+  }
+
+  .resultScreen {
+    flex-direction: row;
+    text-align: left;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .finalScore {
+    margin: 0;
+  }
+
+  .summary {
+    max-width: 60%;
   }
 }

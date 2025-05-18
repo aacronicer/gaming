@@ -56,6 +56,9 @@ export default function GameLayout({
           randomGlitch ? "temp-glitch" : ""
         }`}
       >
+        <div className={styles.powerGlow}></div>
+        <div className={styles.scanEffect}></div>
+
         <div className={styles.header}>
           <button
             className={styles.backButton}
@@ -89,7 +92,7 @@ export default function GameLayout({
       </div>
 
       <div className={styles.footer}>
-        <p>© {new Date().getFullYear()} Retro Arcade</p>
+        <p>© {new Date().getFullYear()} 8-BIT ARCADE</p>
       </div>
 
       <MusicPlayer />

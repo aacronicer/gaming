@@ -2,7 +2,16 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 100;
+  background-color: #111;
+  border: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 5px var(--accent);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  max-width: 350px;
 }
 
 .musicButton {
@@ -46,17 +55,220 @@
 
 .errorTooltip {
   position: absolute;
-  bottom: 60px;
+  bottom: 100%;
   right: 0;
-  background-color: #000;
-  color: #ff2e63;
+  background-color: #ff3333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+
+.collapsed {
+  max-width: 50px;
+  overflow: hidden;
   padding: 10px;
-  border: 3px solid #ff2e63;
-  font-family: "Press Start 2P", cursive;
-  font-size: 0.5rem;
-  width: 180px;
-  text-align: center;
-  animation: fadeIn 0.3s ease-in;
+}
+
+.expandToggle {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+}
+
+.expandToggle:hover {
+  color: var(--accent);
+  background: none;
+}
+
+.playerControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.playButton {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.playButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.playButton:active {
+  transform: scale(0.95);
+}
+
+.songInfo {
+  font-family: var(--font-geist-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.volumeContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volumeIcon {
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.volumeSlider {
+  -webkit-appearance: none;
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  background: #444;
+  outline: none;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.volumeSlider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+}
+
+.volumeSlider:focus {
+  outline: none;
+}
+
+/* Responsive design for music player */
+@media (max-width: 768px) {
+  .musicPlayer {
+    bottom: 10px;
+    right: 10px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .musicPlayer {
+    bottom: 8px;
+    right: 8px;
+    padding: 5px;
+    gap: 6px;
+    border-width: 1.5px;
+  }
+  
+  .expandToggle {
+    padding: 5px;
+    min-width: 24px;
+    min-height: 24px;
+  }
+  
+  .playButton {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .volumeContainer {
+    gap: 2px;
+  }
+  
+  .volumeSlider {
+    width: 40px;
+  }
+  
+  .songInfo {
+    font-size: 0.5rem;
+    max-width: 100px;
+  }
+  
+  .collapsed {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .musicPlayer {
+    max-width: 40px;
+    padding: 8px;
+    border-width: 2px;
+  }
+  
+  .expandToggle {
+    margin-right: 0;
+  }
+  
+  .collapsed {
+    max-width: 40px;
+    padding: 8px;
+  }
+  
+  .playerControls {
+    gap: 8px;
+  }
+  
+  .volumeSlider {
+    width: 60px;
+  }
+  
+  .songInfo {
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 360px) {
+  .musicPlayer:not(.collapsed) {
+    max-width: calc(100vw - 20px);
+    right: 10px;
+    left: 10px;
+  }
+  
+  .volumeContainer {
+    display: none;
+  }
+  
+  .songInfo {
+    max-width: 80px;
+  }
 }
 
 @keyframes shake {

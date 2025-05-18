@@ -31,6 +31,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .arcadeHeader {
@@ -486,7 +487,65 @@ a.secondary {
   }
 }
 
-/* Responsive design */
+/* Responsive design - Large tablets and small desktops */
+@media (max-width: 992px) {
+  .arcadeCabinet {
+    border-left: 20px solid #111;
+    border-right: 20px solid #111;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .marquee {
+    height: 35px;
+    border-width: 3px;
+  }
+  
+  .marqueeContent {
+    font-size: 0.8rem;
+  }
+  
+  .main {
+    padding: 1.5rem;
+    margin: 12px;
+    border-width: 6px;
+  }
+  
+  .slider {
+    height: 370px;
+    max-width: calc(100% - 80px);
+  }
+  
+  .card {
+    width: 320px;
+    min-width: 320px;
+  }
+  
+  .controls {
+    margin-bottom: 15px;
+  }
+  
+  .joystick {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .joystick:after {
+    width: 15px;
+    height: 35px;
+    top: -25px;
+    left: 17px;
+  }
+  
+  .button {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Responsive design - Tablets and large phones */
 @media (max-width: 768px) {
   .arcadeCabinet {
     border-left: 15px solid #111;
@@ -496,14 +555,30 @@ a.secondary {
   .title {
     font-size: 2rem;
   }
+  
+  .arcadeHeader {
+    padding: 15px;
+    border-bottom-width: 6px;
+  }
+  
+  .marquee {
+    height: 30px;
+    border-width: 3px;
+  }
+  
+  .marqueeContent {
+    font-size: 0.7rem;
+  }
 
   .main {
     padding: 1rem;
     margin: 10px;
+    border-width: 5px;
   }
 
   .description {
     font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .slider {
@@ -514,10 +589,16 @@ a.secondary {
   .card {
     width: 280px;
     min-width: 280px;
+    border-width: 3px;
   }
 
   .gameImageContainer {
     height: 150px;
+    border-bottom-width: 2px;
+  }
+  
+  .iconDisplay {
+    font-size: 80px;
   }
 
   .sliderButton {
@@ -529,5 +610,268 @@ a.secondary {
   .randomGameButton {
     padding: 10px 20px;
     font-size: 0.9rem;
+  }
+  
+  .controls {
+    gap: 20px;
+  }
+  
+  .joystick {
+    width: 45px;
+    height: 45px;
+    box-shadow: 0 0 0 4px #111, 0 0 0 6px #333;
+  }
+  
+  .joystick:after {
+    width: 14px;
+    height: 30px;
+    top: -22px;
+    left: 16px;
+  }
+  
+  .buttonGroup {
+    gap: 20px;
+  }
+  
+  .button {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .footer {
+    padding: 15px;
+    border-top-width: 6px;
+  }
+}
+
+/* Responsive design - Small phones */
+@media (max-width: 576px) {
+  .arcadeCabinet {
+    border-left: 8px solid #111;
+    border-right: 8px solid #111;
+  }
+  
+  .arcadeHeader {
+    padding: 10px;
+    border-bottom-width: 4px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+  }
+  
+  .marquee {
+    height: 25px;
+    border-width: 2px;
+  }
+  
+  .marqueeContent {
+    font-size: 0.6rem;
+  }
+
+  .main {
+    padding: 0.7rem;
+    margin: 6px;
+    border-width: 4px;
+  }
+
+  .description {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .sliderContainer {
+    margin-bottom: 1.5rem;
+  }
+
+  .slider {
+    height: 300px;
+    max-width: calc(100% - 50px);
+  }
+
+  .card {
+    width: 220px;
+    min-width: 220px;
+    border-width: 2px;
+  }
+
+  .gameImageContainer {
+    height: 120px;
+  }
+  
+  .iconDisplay {
+    font-size: 60px;
+  }
+  
+  .gameTitle h2 {
+    font-size: 0.8rem;
+  }
+  
+  .card p {
+    font-size: 0.7rem;
+  }
+
+  .sliderButton {
+    width: 22px;
+    height: 22px;
+    font-size: 0.8rem;
+  }
+
+  .randomGameButton {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    border-width: 2px;
+  }
+  
+  .randomIcon {
+    margin-right: 6px;
+    font-size: 1rem;
+  }
+  
+  .controls {
+    margin-bottom: 10px;
+  }
+  
+  .joystick {
+    width: 35px;
+    height: 35px;
+    box-shadow: 0 0 0 3px #111, 0 0 0 5px #333;
+  }
+  
+  .joystick:after {
+    width: 10px;
+    height: 22px;
+    top: -18px;
+    left: 12px;
+  }
+  
+  .buttonGroup {
+    gap: 15px;
+  }
+  
+  .button {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .footer {
+    padding: 10px;
+    border-top-width: 4px;
+  }
+  
+  .copyright {
+    font-size: 0.6rem;
+  }
+}
+
+/* Responsive design - Extra small phones */
+@media (max-width: 360px) {
+  .arcadeCabinet {
+    border-left: 5px solid #111;
+    border-right: 5px solid #111;
+  }
+  
+  .title {
+    font-size: 1.2rem;
+  }
+  
+  .marquee {
+    height: 22px;
+    border-width: 2px;
+  }
+  
+  .marqueeContent {
+    font-size: 0.55rem;
+  }
+  
+  .main {
+    padding: 0.5rem;
+    margin: 4px;
+    border-width: 3px;
+  }
+  
+  .description {
+    font-size: 0.7rem;
+  }
+  
+  .slider {
+    height: 250px;
+    max-width: calc(100% - 40px);
+  }
+  
+  .card {
+    width: 180px;
+    min-width: 180px;
+  }
+  
+  .gameImageContainer {
+    height: 100px;
+  }
+  
+  .iconDisplay {
+    font-size: 50px;
+  }
+  
+  .gameTitle {
+    padding: 5px;
+  }
+  
+  .gameTitle h2 {
+    font-size: 0.7rem;
+  }
+  
+  .gameInfo {
+    padding: 8px;
+  }
+  
+  .card p {
+    font-size: 0.6rem;
+    line-height: 1.3;
+  }
+  
+  .randomGameButton {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    box-shadow: 0 3px 0 #000, 0 0 8px rgba(0, 0, 0, 0.7);
+  }
+  
+  .joystick {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .joystick:after {
+    width: 8px;
+    height: 18px;
+    top: -15px;
+    left: 10px;
+  }
+  
+  .buttonGroup {
+    gap: 12px;
+  }
+  
+  .button {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Touch-friendly improvements for mobile */
+@media (pointer: coarse) {
+  .card {
+    min-height: 44px;
+  }
+  
+  .sliderButton {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .randomGameButton {
+    min-height: 44px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
