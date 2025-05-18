@@ -228,11 +228,11 @@
     max-width: 700px;
     gap: 1.5rem;
   }
-  
+
   .statValue {
     font-size: 1.3rem;
   }
-  
+
   .tile {
     font-size: 1.3rem;
   }
@@ -244,23 +244,23 @@
     padding: 0 1rem;
     gap: 1.2rem;
   }
-  
+
   .statsBar {
     padding: 0.75rem;
   }
-  
+
   .statLabel {
     font-size: 0.8rem;
   }
-  
+
   .statValue {
     font-size: 1.2rem;
   }
-  
+
   .difficultyButtons {
     justify-content: center;
   }
-  
+
   .tile {
     font-size: 1.2rem;
   }
@@ -271,44 +271,44 @@
     max-width: 100%;
     gap: 1rem;
   }
-  
+
   .controls {
     gap: 1rem;
   }
-  
+
   .statsBar {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
   }
-  
+
   .stat {
     flex: 0 0 30%;
   }
-  
+
   .statValue {
     font-size: 1.1rem;
   }
-  
+
   .gameButtons {
     width: 100%;
   }
-  
+
   .startButton,
   .resetButton {
     flex: 1;
     padding: 0.6rem 1rem;
   }
-  
+
   .grid {
     width: 100%;
     max-width: 340px;
   }
-  
+
   .tile {
     font-size: 1rem;
   }
-  
+
   .completionMessage {
     padding: 1rem;
   }
@@ -318,29 +318,29 @@
   .difficultyButtons {
     gap: 0.3rem;
   }
-  
+
   .difficultyButton {
     padding: 0.4rem 0.7rem;
     font-size: 0.9rem;
   }
-  
+
   .stat {
     flex: 0 0 45%;
   }
-  
+
   .statLabel {
     font-size: 0.7rem;
   }
-  
+
   .statValue {
     font-size: 1rem;
   }
-  
+
   .grid {
     max-width: 280px;
     gap: 3px;
   }
-  
+
   .tile {
     font-size: 0.9rem;
   }
@@ -355,24 +355,24 @@
     max-width: 100%;
     padding: 0 1rem;
   }
-  
+
   .controls {
     flex: 0 0 30%;
     order: 2;
   }
-  
+
   .grid {
     flex: 0 0 60%;
     order: 1;
     max-width: 350px;
   }
-  
+
   .statsBar {
     flex: 0 0 100%;
     order: 0;
     margin-bottom: 0.5rem;
   }
-  
+
   .completionMessage {
     flex: 0 0 100%;
     order: 3;

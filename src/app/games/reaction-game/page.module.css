@@ -297,37 +297,37 @@
     gap: 1.5rem;
     padding: 0 1rem;
   }
-  
+
   .target {
     width: 150px;
     height: 150px;
   }
-  
+
   .targetText {
     font-size: 1.4rem;
   }
-  
+
   .instructions {
     font-size: 0.9rem;
     padding: 0.8rem;
   }
-  
+
   .statValue {
     font-size: 1.3rem;
   }
-  
+
   .guideGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .guideItem {
     padding: 0.5rem;
   }
-  
+
   .guideRange {
     font-size: 0.8rem;
   }
-  
+
   .guideLabel {
     font-size: 0.7rem;
   }
@@ -338,20 +338,20 @@
   .container {
     gap: 1rem;
   }
-  
+
   .gameArea {
     min-height: 200px;
   }
-  
+
   .target {
     width: 120px;
     height: 120px;
   }
-  
+
   .instructions {
     padding: 0.6rem;
   }
-  
+
   .reactionGuide {
     padding: 1rem;
   }

@@ -195,31 +195,31 @@
     gap: 6px;
     border-width: 1.5px;
   }
-  
+
   .expandToggle {
     padding: 5px;
     min-width: 24px;
     min-height: 24px;
   }
-  
+
   .playButton {
     width: 24px;
     height: 24px;
   }
-  
+
   .volumeContainer {
     gap: 2px;
   }
-  
+
   .volumeSlider {
     width: 40px;
   }
-  
+
   .songInfo {
     font-size: 0.5rem;
     max-width: 100px;
   }
-  
+
   .collapsed {
     width: 34px;
     height: 34px;
@@ -232,24 +232,24 @@
     padding: 8px;
     border-width: 2px;
   }
-  
+
   .expandToggle {
     margin-right: 0;
   }
-  
+
   .collapsed {
     max-width: 40px;
     padding: 8px;
   }
-  
+
   .playerControls {
     gap: 8px;
   }
-  
+
   .volumeSlider {
     width: 60px;
   }
-  
+
   .songInfo {
     max-width: 80px;
   }
@@ -261,11 +261,11 @@
     right: 10px;
     left: 10px;
   }
-  
+
   .volumeContainer {
     display: none;
   }
-  
+
   .songInfo {
     max-width: 80px;
   }

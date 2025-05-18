@@ -180,7 +180,10 @@ export default function MusicPlayer() {
 
         // Remove this handler after execution
         if (audioRef.current) {
-          audioRef.current.removeEventListener("canplaythrough", handleAudioLoad);
+          audioRef.current.removeEventListener(
+            "canplaythrough",
+            handleAudioLoad
+          );
         }
       };
 
@@ -195,7 +198,10 @@ export default function MusicPlayer() {
       setTimeout(() => {
         if (loadingRef.current && audioRef.current) {
           loadingRef.current = false;
-          audioRef.current.removeEventListener("canplaythrough", handleAudioLoad);
+          audioRef.current.removeEventListener(
+            "canplaythrough",
+            handleAudioLoad
+          );
           console.log("Audio loading timeout - forcing recovery");
 
           if (wasPlaying && isPlaying) {
@@ -233,13 +239,16 @@ export default function MusicPlayer() {
   };
 
   return (
-    <div className={`${styles.musicPlayer} ${collapsed ? styles.collapsed : ""}`}>
+    <div
+      className={`${styles.musicPlayer} ${collapsed ? styles.collapsed : ""}`}
+    >
       <button
         className={styles.expandToggle}
         onClick={toggleCollapsed}
         aria-label={collapsed ? "Expand music player" : "Collapse music player"}
       >
-        {collapsed ? "🎵" : "▶"} {/* Changed from "◀" to "▶" for correct direction */}
+        {collapsed ? "🎵" : "▶"}{" "}
+        {/* Changed from "◀" to "▶" for correct direction */}
       </button>
 
       {!collapsed && (
@@ -270,7 +279,9 @@ export default function MusicPlayer() {
             />
           </div>
 
-          {audioError && <div className={styles.errorTooltip}>{audioError}</div>}
+          {audioError && (
+            <div className={styles.errorTooltip}>{audioError}</div>
+          )}
         </div>
       )}
     </div>

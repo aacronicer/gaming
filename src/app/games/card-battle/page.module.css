@@ -613,7 +613,7 @@
   .container {
     max-width: 800px;
   }
-  
+
   .card {
     width: 110px;
     height: 155px;
@@ -624,26 +624,26 @@
   .container {
     max-width: 600px;
   }
-  
+
   .healthContainer {
     width: 140px;
   }
-  
+
   .battleArea {
     height: 300px;
     gap: 1rem;
   }
-  
+
   .card {
     width: 100px;
     height: 140px;
   }
-  
+
   .character {
     width: 50px;
     height: 50px;
   }
-  
+
   .characterIcon {
     font-size: 2rem;
   }
@@ -654,43 +654,43 @@
     max-width: 100%;
     padding: 0 0.5rem;
   }
-  
+
   .healthContainer {
     width: 110px;
   }
-  
+
   .characterName {
     font-size: 0.8rem;
   }
-  
+
   .battleArea {
     height: 260px;
   }
-  
+
   .hand {
     gap: 0.5rem;
   }
-  
+
   .card {
     width: 85px;
     height: 120px;
   }
-  
+
   .turnIndicator {
     font-size: 0.8rem;
     padding: 0.4rem 0.8rem;
   }
-  
+
   .messageBox {
     padding: 0.6rem;
     font-size: 0.7rem;
   }
-  
+
   .character {
     width: 45px;
     height: 45px;
   }
-  
+
   .characterIcon {
     font-size: 1.8rem;
   }
@@ -700,30 +700,30 @@
   .healthContainer {
     width: 90px;
   }
-  
+
   .characterName {
     font-size: 0.7rem;
   }
-  
+
   .character {
     width: 40px;
     height: 40px;
   }
-  
+
   .characterIcon {
     font-size: 1.6rem;
   }
-  
+
   .battleArea {
     height: 230px;
     gap: 0.75rem;
   }
-  
+
   .card {
     width: 70px;
     height: 100px;
   }
-  
+
   .handTitle {
     font-size: 0.8rem;
     margin-bottom: 0.75rem;
@@ -741,23 +741,23 @@
     gap: 0.5rem;
     align-items: start;
   }
-  
+
   .gameInfo {
     grid-area: info;
     margin-bottom: 0.5rem;
   }
-  
+
   .battleArea {
     grid-area: battle;
     height: auto;
     min-height: 200px;
   }
-  
+
   .handContainer {
     grid-area: hand;
     margin-top: 0;
   }
-  
+
   .hand {
     flex-direction: column;
     align-items: center;
@@ -765,21 +765,21 @@
     overflow-y: auto;
     padding-right: 0.5rem;
   }
-  
+
   .card {
     width: 90px;
     height: 60px;
   }
-  
+
   .character {
     width: 35px;
     height: 35px;
   }
-  
+
   .characterIcon {
     font-size: 1.5rem;
   }
-  
+
   .healthContainer {
     width: 80px;
   }

@@ -76,7 +76,12 @@ export default function MemoryMatch() {
     selectedIcons.forEach((icon, index) => {
       // Create two cards for each icon (a pair)
       newCards.push({ id: index * 2, icon, flipped: false, matched: false });
-      newCards.push({ id: index * 2 + 1, icon, flipped: false, matched: false });
+      newCards.push({
+        id: index * 2 + 1,
+        icon,
+        flipped: false,
+        matched: false,
+      });
     });
 
     // Shuffle cards

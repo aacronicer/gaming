@@ -167,9 +167,15 @@
 }
 
 @keyframes matchPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .gameOver {
@@ -367,7 +373,8 @@
     font-size: 0.8rem;
   }
 
-  .nextLevelButton, .restartButton {
+  .nextLevelButton,
+  .restartButton {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
   }
@@ -429,7 +436,8 @@
     margin-top: 1.5rem;
   }
 
-  .nextLevelButton, .restartButton {
+  .nextLevelButton,
+  .restartButton {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
   }
@@ -517,7 +525,8 @@
     margin-top: 1.2rem;
   }
 
-  .nextLevelButton, .restartButton {
+  .nextLevelButton,
+  .restartButton {
     padding: 0.4rem 0.8rem;
     font-size: 0.75rem;
   }
@@ -590,7 +599,7 @@
   .scoreInfo {
     width: auto;
   }
-  
+
   /* Adjust card sizes for landscape view */
   .card {
     width: 48px;
@@ -612,7 +621,7 @@
     border-width: 1px;
   }
 
-  .grid6 .cardFront, 
+  .grid6 .cardFront,
   .grid8 .cardFront {
     font-size: 0.6rem;
   }
