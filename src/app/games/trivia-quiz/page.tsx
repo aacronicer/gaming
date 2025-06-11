@@ -73,7 +73,7 @@ export default function TriviaQuiz() {
     {
       question: "Which country has the largest population in the world?",
       options: ["India", "China", "United States", "Russia"],
-      correctAnswer: 1,
+      correctAnswer: 0,
       category: "geography",
     },
     {
